@@ -1,0 +1,61 @@
+---
+  title: "Principal Component Analysis: a Simple Example"
+---
+
+The data are the results of qualifying examinations for 25 graduate
+students in mathematics. diffgeom refers to differential geometry
+and reals is for real analysis. Note that the differential geometry
+and complex analysis examinations were closed book, while the
+remaining three exams were open book.
+
+```{r}
+# Load data
+setwd("/Users/emmanuel/Dropbox/Work/Teaching/Stanford/Math/Math104/2019-2020/Lectures")
+testscores = read.table("testscores.dat.txt")
+testscores
+```
+
+We now compute the covariance matrix of the data and display it.
+
+```{r}
+covX = var(testscores)
+covX
+```
+
+We compute the correlation matrix and display it as well. The correlation matrix is the same as before, except that the variables are standardized to have unit variance.
+
+```{r}
+rcorr = cor(testscores)
+rcorr
+```
+
+We compute the eigenvalues and eigenvectors of the covariance matrix
+
+```{r}
+# Eigen analysis
+my.PCs = eigen(covX)
+my.PCs
+```
+
+We look at the fraction of variance explained by the top principal components
+
+```{r}
+cumsum(my.PCs$values)/sum(my.PCs$values)
+```
+
+We can of course use R built-in functions
+
+```{r}
+pcTest = prcomp(testscores,scale=FALSE)
+plot(pcTest)
+summary(pcTest)
+biplot(pcTest)
+```
+
+Normalize variables first
+
+```{r}
+pcTest.scaled = prcomp(testscores,scale=TRUE)
+summary(pcTest.scaled)
+biplot(pcTest)
+```
