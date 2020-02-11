@@ -1,5 +1,9 @@
+
 ---
   title: "Principal Component Analysis: a Simple Example"
+  output: 
+  html_document:
+    keep_md: true
 ---
 
 The data are the results of qualifying examinations for 25 graduate
@@ -10,7 +14,7 @@ remaining three exams were open book.
 
 ```{r}
 # Load data
-setwd("/Users/emmanuel/Dropbox/Work/Teaching/Stanford/Math/Math104/2019-2020/Lectures")
+setwd("/Users/emmanuel/Dropbox/Work/Teaching/Stanford/Math/Math104/2019-2020/Lectures/gitHub")
 testscores = read.table("testscores.dat.txt")
 testscores
 ```
